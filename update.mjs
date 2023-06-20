@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 
 const buildTools = [
+   'karium.config.*',
    'build.config.*',
    'electron-builder.*',
    'grunt*',

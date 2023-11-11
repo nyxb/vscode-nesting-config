@@ -1,6 +1,6 @@
 {
   "name": "vscode-nesting-config",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "packageManager": "pnpm@8.6.1",
   "description": "This is a config snippet making your file tree cleaner with the file nesting feature of VS Code.",

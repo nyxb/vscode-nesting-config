@@ -16,7 +16,7 @@ export async function activate(ctx: ExtensionContext) {
    }
 
    if (getConfig('nestingConfigUpdater.autoUpdate')) {
-      if (Date.now() - lastUpdate >= autoUpdateInterval * 60_000)
+      if (Date.now() - lastUpdate >= autoUpdateInterval! * 60_000)
          fetchAndUpdate(ctx, getConfig('nestingConfigUpdater.promptOnAutoUpdate'))
    }
 }

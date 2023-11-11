@@ -30,6 +30,8 @@ importers:
         specifier: ^5.1.3
         version: 5.1.3
 
+  extension: {}
+
 packages:
 
   /@babel/code-frame@7.22.5:

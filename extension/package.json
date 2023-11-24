@@ -1,10 +1,10 @@
 {
   "publisher": "nyxb",
-  "name": "nesting-config",
-  "displayName": "Nesting Config Updater",
+  "name": "file-nesting",
+  "displayName": "File Nesting Updater",
   "version": "1.1.9",
   "private": true,
-  "description": "🔄 Auto updating for Nyxb's nesting config",
+  "description": "Auto updating for Anthony's file nesting config",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -26,36 +26,36 @@
   "contributes": {
     "commands": [
       {
-        "command": "nyxb.nesting.manualUpdate",
+        "command": "nyxb.file-nesting.manualUpdate",
         "title": "Update config now",
-        "category": "Nesting Config Updater"
+        "category": "File Nesting Updater"
       }
     ],
     "configuration": {
       "type": "object",
-      "title": "Nesting Config Updater",
+      "title": "File Nesting Updater",
       "properties": {
-        "nestingConfigUpdater.autoUpdate": {
+        "fileNestingUpdater.autoUpdate": {
           "type": "boolean",
           "description": "Fetch and update the latest config automatically",
           "default": true
         },
-        "nestingConfigUpdater.promptOnAutoUpdate": {
+        "fileNestingUpdater.promptOnAutoUpdate": {
           "type": "boolean",
           "description": "Should show up the prompt before doing auto update",
           "default": true
         },
-        "nestingConfigUpdater.autoUpdateInterval": {
+        "fileNestingUpdater.autoUpdateInterval": {
           "type": "number",
           "description": "The minimal interval for auto update, in minutes",
           "default": 4320
         },
-        "nestingConfigUpdater.upstreamRepo": {
+        "fileNestingUpdater.upstreamRepo": {
           "type": "string",
           "description": "The upstream repo you want to update from",
-          "default": "nyxb/vscode-nesting-config"
+          "default": "nyxb/vscode-file-nesting-config"
         },
-        "nestingConfigUpdater.upstreamBranch": {
+        "fileNestingUpdater.upstreamBranch": {
           "type": "string",
           "description": "The branch name of upstream repo",
           "default": "main"

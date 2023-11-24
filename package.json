@@ -17,10 +17,10 @@
   },
   "devDependencies": {
     "@nyxb/eslint-config": "^1.0.6",
-    "@nyxb/nyxi": "^0.0.30",
+    "@nyxb/nyxi": "^0.0.31",
     "@types/vscode": "^1.84.1",
     "bumping": "^9.2.1",
-    "eslint": "^8.53.0",
+    "eslint": "^8.54.0",
     "ofetch": "^1.3.3",
     "tsup": "^7.2.0",
     "typescript": "^5.2.2"

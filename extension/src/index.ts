@@ -4,21 +4,21 @@ import { getConfig } from './config'
 import { fetchAndUpdate } from './fetch'
 
 export async function activate(ctx: ExtensionContext) {
-   commands.registerCommand('nyxb.nesting-config.manualUpdate', () => fetchAndUpdate(ctx, false))
+  commands.registerCommand('nyxb.file-nesting.manualUpdate', () => fetchAndUpdate(ctx, false))
 
-   const lastUpdate = ctx.globalState.get('lastUpdate', 0)
-   const initialized = ctx.globalState.get('init', false)
-   const autoUpdateInterval = getConfig<number>('nestingConfigUpdater.autoUpdateInterval', 60)
+  const lastUpdate = ctx.globalState.get('lastUpdate', 0)
+  const initialized = ctx.globalState.get('init', false)
+  const autoUpdateInterval = getConfig<number>('fileNestingUpdater.autoUpdateInterval')
 
-   if (!initialized) {
-      ctx.globalState.update('init', true)
-      fetchAndUpdate(ctx, false)
-   }
+  if (!initialized) {
+    ctx.globalState.update('init', true)
+    fetchAndUpdate(ctx, false)
+  }
 
-   if (getConfig('nestingConfigUpdater.autoUpdate', true)) {
-      if (Date.now() - lastUpdate >= autoUpdateInterval! * 60_000)
-         fetchAndUpdate(ctx, getConfig('nestingConfigUpdater.promptOnAutoUpdate', true))
-   }
+  if (getConfig('fileNestingUpdater.autoUpdate')) {
+    if (Date.now() - lastUpdate >= autoUpdateInterval! * 60_000)
+      fetchAndUpdate(ctx, getConfig('fileNestingUpdater.promptOnAutoUpdate'))
+  }
 }
 
 export function deactivate() {}

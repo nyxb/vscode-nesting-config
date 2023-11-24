@@ -23,7 +23,8 @@
     "ext:build": "cd extension && tsup src/index.ts --external vscode",
     "ext:dev": "nyxr ext:build --watch src",
     "ext:publish": "nyxr ext:build && cd extension && vsce publish --no-dependencies",
-    "ext:pack": "nyxr ext:build && cd extension && vsce package --no-dependencies"
+    "ext:pack": "nyxr ext:build && cd extension && vsce package --no-dependencies",
+    "release": "bumping --commit --push --tag && nyxr ext:publish"
   },
   "devDependencies": {
     "@nyxb/eslint-config": "^0.0.53",

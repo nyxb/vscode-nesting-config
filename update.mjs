@@ -108,13 +108,13 @@ const workspaces = [
    '.tazerc*',
    '.yarnrc*',
    'bower.json',
-   'bun*',
    'lerna*',
    'nx.*',
    'package-lock.json',
    'npm-shrinkwrap.json',
    'package.nls*.json',
    'pnpm*',
+   'bun*',
    'simple-git-hooks*',
    'turbo*',
    'workspace.json',
@@ -195,8 +195,6 @@ const libraries = [
 ]
 
 const packageJSON = [
-   'bun.lockb',
-   'bun*',
    '.browserslist*',
    '.nodemon*',
    '.pm2*',

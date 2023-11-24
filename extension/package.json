@@ -1,10 +1,10 @@
 {
   "publisher": "nyxb",
-  "name": "file-nesting",
+  "name": "nesting-config",
   "displayName": "File Nesting Updater",
   "version": "1.1.10",
   "private": true,
-  "description": "Auto updating for Anthony's file nesting config",
+  "description": "Auto updating for Nyxb's file nesting config",
   "license": "MIT",
   "repository": {
     "type": "git",

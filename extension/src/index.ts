@@ -8,16 +8,16 @@ export async function activate(ctx: ExtensionContext) {
 
    const lastUpdate = ctx.globalState.get('lastUpdate', 0)
    const initialized = ctx.globalState.get('init', false)
-   const autoUpdateInterval = getConfig<number>('nestingConfigUpdater.autoUpdateInterval')
+   const autoUpdateInterval = getConfig<number>('nestingConfigUpdater.autoUpdateInterval', 60)
 
    if (!initialized) {
       ctx.globalState.update('init', true)
       fetchAndUpdate(ctx, false)
    }
 
-   if (getConfig('nestingConfigUpdater.autoUpdate')) {
+   if (getConfig('nestingConfigUpdater.autoUpdate', true)) {
       if (Date.now() - lastUpdate >= autoUpdateInterval! * 60_000)
-         fetchAndUpdate(ctx, getConfig('nestingConfigUpdater.promptOnAutoUpdate'))
+         fetchAndUpdate(ctx, getConfig('nestingConfigUpdater.promptOnAutoUpdate', true))
    }
 }
 

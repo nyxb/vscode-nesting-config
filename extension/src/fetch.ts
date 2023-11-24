@@ -5,8 +5,9 @@ import { FILE, MSG_PREFIX, URL_PREFIX } from './constants'
 import { getConfig } from './config'
 
 export async function fetchLatest() {
-   const repo = getConfig<string>('nestingConfigUpdater.upstreamRepo')
-   const branch = getConfig<string>('nestingConfigUpdater.upstreamBranch')
+   const repo = getConfig<string>('nestingConfigUpdater.upstreamRepo', 'nyxb/vscode-nesting-config')
+   const branch = getConfig<string>('nestingConfigUpdater.upstreamBranch', 'main')
+
    const url = `${URL_PREFIX}/${repo}@${branch}/${FILE}`
    const md = await fetch(url).then(r => r.text())
    const content = (md.match(/```jsonc([\s\S]*?)```/) || [])[1] || ''

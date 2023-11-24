@@ -1,7 +1,7 @@
 {
   "publisher": "nyxb",
   "name": "nesting-config",
-  "displayName": "File Nesting Updater",
+  "displayName": "Nesting Config Updater",
   "version": "1.1.11",
   "private": true,
   "description": "Auto updating for Nyxb's file nesting config",

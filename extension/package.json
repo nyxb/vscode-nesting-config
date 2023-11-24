@@ -53,7 +53,7 @@
         "fileNestingUpdater.upstreamRepo": {
           "type": "string",
           "description": "The upstream repo you want to update from",
-          "default": "nyxb/vscode-file-nesting-config"
+          "default": "nyxb/vscode-nesting-config"
         },
         "fileNestingUpdater.upstreamBranch": {
           "type": "string",

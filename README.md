@@ -25,7 +25,7 @@ Open your VS Code, bring up your `settings.json`, copy-n-paste the snippet below
 
 ```jsonc
   // updated 2023-11-24 22:45
-  // https://github.com/nyxb/vscode-file-nesting-config
+  // https://github.com/nyxb/nyxb/vscode-nesting-config
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.expand": false,
   "explorer.fileNesting.patterns": {

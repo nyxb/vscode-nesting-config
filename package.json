@@ -1,32 +1,21 @@
 {
-  "name": "vscode-nesting-config",
-  "version": "1.1.4",
-  "private": true,
-  "packageManager": "pnpm@8.11.0",
-  "description": "This is a config snippet making your file tree cleaner with the file nesting feature of VS Code.",
-  "author": "Dennis Ollhoff <contact@nyxb.xyz>",
-  "license": "MIT",
-  "funding": "https://github.com/sponsors/nyxb",
-  "homepage": "https://💻nyxb.ws",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nyxb/vscode-nesting-config.git"
-  },
-  "bugs": {
-    "url": "https://github.com/nyxb/vscode-nesting-config/issues"
-  },
-  "keywords": [],
-  "files": [],
-  "scripts": {
-    "update": "node update.mjs",
-    "lint": "eslint .",
-    "ext:build": "cd extension && tsup src/index.ts --external vscode",
-    "ext:dev": "nyxr ext:build --watch src",
-    "ext:publish": "nyxr ext:build && cd extension && bumping --commit --push --tag && vsce publish --no-dependencies",
-    "ext:pack": "nyxr ext:build && cd extension && vsce package --no-dependencies"
-  },
+   "private": true,
+   "packageManager": "pnpm@8.10.2",
+   "workspaces": [
+     "extension"
+   ],
+   "author": "Dennis Ollhoff <contact@nyxb.email>",
+   "license": "MIT",
+   "funding": "https://github.com/sponsors/nyxb",
+   "scripts": {
+     "update": "node update.mjs",
+     "lint": "eslint .",
+     "ext:build": "cd extension && tsup src/index.ts --external vscode",
+     "ext:dev": "nyxr ext:build --watch src",
+     "ext:publish": "nyxr ext:build && cd extension && bumping && vsce publish --no-dependencies",
+     "ext:pack": "nyxr ext:build && cd extension && vsce package --no-dependencies"
+   },
   "devDependencies": {
-    "@nyxb/eslint-config": "^0.0.53",
     "@nyxb/nyxi": "^0.0.30",
     "@types/vscode": "^1.84.1",
     "bumping": "^9.2.1",

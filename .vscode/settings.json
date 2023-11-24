@@ -10,4 +10,7 @@
    "editor.trimAutoWhitespace": true,
    "files.encoding": "utf8",
    "eslint.format.enable": true,
+   "cSpell.words": [
+      "ofetch"
+   ],
 }

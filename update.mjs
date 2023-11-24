@@ -195,6 +195,7 @@ const libraries = [
 ]
 
 const packageJSON = [
+   'bun.lockb',
    'bun*',
    '.browserslist*',
    '.nodemon*',

@@ -1,7 +1,6 @@
 import fs from 'node:fs'
 
 const buildTools = [
-   'karium.config.*',
    'build.config.*',
    'electron-builder.*',
    'grunt*',
@@ -73,8 +72,8 @@ const linters = [
    '.yamllint*',
    'commitlint*',
    'dangerfile*',
-   '.dprint.json',
-   'dprint.json',
+   '.dprint.json*',
+   'dprint.json*',
    '.dlint.json',
    'dlint.json',
    'lint-staged*',
@@ -85,6 +84,7 @@ const linters = [
    'tslint*',
    'xo.config.*',
    'pyrightconfig.json',
+   'biome.json',
 ]
 
 const env = [
@@ -105,6 +105,8 @@ const workspaces = [
    '.simple-git-hooks*',
    '.releaserc*',
    'release.config.*',
+   '.release-please*.json',
+   'release-please*.json',
    '.tazerc*',
    '.yarnrc*',
    'bower.json',
@@ -114,18 +116,20 @@ const workspaces = [
    'npm-shrinkwrap.json',
    'package.nls*.json',
    'pnpm*',
-   'bun*',
    'simple-git-hooks*',
    'turbo*',
    'workspace.json',
    'yarn*',
    'firebase.json',
+   'bun.lockb',
 ]
 
 const docker = [
    'dockerfile*',
+   '*.dockerfile',
    '.dockerignore',
    'docker-compose.*',
+   '.devcontainer.*',
 ]
 
 // latex
@@ -158,8 +162,8 @@ const tex = [
 const frameworks = {
    'vite.config.*': [],
    'vue.config.*': [],
-   'nuxt.config.*': [],
-   'next.config.*': ['next-env.d.ts'],
+   'nuxt.config.*': ['.nuxtignore'],
+   'next.config.*': ['next-env.d.ts', 'next-i18next.config.*'],
    'svelte.config.*': ['mdsvex.config.js', 'vite.config.*', 'houdini.config.*'],
    'remix.config.*': ['remix.*'],
    'artisan': ['server.php', 'webpack.mix.js'],
@@ -189,6 +193,8 @@ const libraries = [
    'webpack.config.*',
    'rspack.config.*',
    'windi.config.*',
+   'i18n.config.*',
+   'vuetify.config.*',
    ...env,
    ...testingTools,
    ...tsconfig,
@@ -215,25 +221,28 @@ const packageJSON = [
    ...linters,
 ]
 
-const readme = [
-   'authors',
-   'backers*',
-   'changelog*',
-   'citation*',
-   'code_of_conduct*',
-   'codeowners',
-   'contributing*',
-   'contributors',
-   'copying',
-   'credits',
-   'governance.md',
-   'history.md',
-   'license*',
-   'maintainers',
-   'readme*',
-   'security.md',
-   'sponsors*',
+let readme = [
+   'AUTHORS',
+   'BACKERS*',
+   'CHANGELOG*',
+   'CITATION*',
+   'CODE_OF_CONDUCT*',
+   'CODEOWNERS',
+   'CONTRIBUTING*',
+   'CONTRIBUTORS',
+   'COPYING*',
+   'CREDITS',
+   'GOVERNANCE.MD',
+   'HISTORY.MD',
+   'LICENSE*',
+   'MAINTAINERS',
+   'README*',
+   'SECURITY.MD',
+   'SPONSORS*',
 ]
+
+readme = addTitleCaseVariants(readme)
+readme = addLowerCaseVariants(readme)
 
 const cargo = [
    'cargo.lock',
@@ -288,10 +297,53 @@ const elixir = [
    '.tool-versions',
 ]
 
-const pdm = [
+const pythonConfigs = [
+   'tox.ini',
+   '.editorconfig',
+   '.flake8',
+   '.isort.cfg',
+   '.python-version',
+]
+
+const requirementstxt = [
+   'requirements*.txt',
+   'requirements*.in',
+   'requirements*.pip',
+   ...pythonConfigs,
+]
+
+const setupcfg = [
+   'setup.cfg',
+   'MANIFEST.in',
+   ...requirementstxt,
+]
+
+const setuppy = [
+   'setup.py',
+   ...setupcfg,
+]
+
+const pipfile = [
+   'Pipfile',
+   'Pipfile.lock',
+   ...requirementstxt,
+]
+
+const hatchtoml = [
+   'hatch.toml',
+   ...requirementstxt,
+]
+
+const pyprojecttoml = [
+   // the one config file to rule them all
    'pyproject.toml',
    'pdm.lock',
    '.pdm.toml',
+   '.pdm-python',
+   'poetry.lock',
+   ...setuppy,
+   ...pipfile,
+   ...hatchtoml,
 ]
 
 const phoenixLiveView = [
@@ -315,10 +367,10 @@ const base = {
    '*.mjs': '$(capture).mjs.map, $(capture).*.mjs, $(capture)_*.mjs',
    '*.mts': '$(capture).mts.map, $(capture).*.mts, $(capture)_*.mts',
    '*.cjs': '$(capture).cjs.map, $(capture).*.cjs, $(capture)_*.cjs',
-   '*.jsx': '$(capture).js, $(capture).*.jsx, $(capture)_*.js, $(capture)_*.jsx',
+   '*.jsx': '$(capture).js, $(capture).*.jsx, $(capture)_*.js, $(capture)_*.jsx, $(capture).less, $(capture).module.less',
    '*.ts': '$(capture).js, $(capture).d.ts.map, $(capture).*.ts, $(capture)_*.js, $(capture)_*.ts',
    '*.component.ts': '$(capture).component.html, $(capture).component.spec.ts, $(capture).component.css, $(capture).component.scss, $(capture).component.sass, $(capture).component.less',
-   '*.tsx': '$(capture).ts, $(capture).*.tsx, $(capture)_*.ts, $(capture)_*.tsx',
+   '*.tsx': '$(capture).ts, $(capture).*.tsx, $(capture)_*.ts, $(capture)_*.tsx, $(capture).less, $(capture).module.less, $(capture).scss, $(capture).module.scss',
    '*.vue': '$(capture).*.ts, $(capture).*.js, $(capture).story.vue',
    'shims.d.ts': '*.d.ts',
    '*.cpp': '$(capture).hpp, $(capture).h, $(capture).hxx',
@@ -331,7 +383,7 @@ const base = {
    'default.nix': 'shell.nix',
    'flake.nix': 'flake.lock',
    'BUILD.bazel': '*.bzl, *.bazel, *.bazelrc, bazel.rc, .bazelignore, .bazelproject, WORKSPACE',
-   'CMakeLists.txt': '*.cmake, *.cmake.in, .cmake-format.yaml, CMakePresets.json',
+   'CMakeLists.txt': '*.cmake, *.cmake.in, .cmake-format.yaml, CMakePresets.json, CMakeCache.txt',
    '.clang-tidy': '.clang-format, .clangd, compile_commands.json',
    '*.pubxml': '$(capture).pubxml.user',
    '*.asax': '$(capture).*.cs, $(capture).*.vb',
@@ -349,6 +401,7 @@ const base = {
    '*.module.ts': '$(capture).resolver.ts, $(capture).controller.ts, $(capture).service.ts',
    '*.java': '$(capture).class',
    '.project': '.classpath',
+   '*.fs': '$(capture).fs.js, $(capture).fs.jsx, $(capture).fs.ts, $(capture).fs.tsx, $(capture).fs.rs, $(capture).fs.php, $(capture).fs.dart',
 }
 // Based on the new SvelteKit's routing system https://kit.svelte.dev/docs/routing
 const svelteKitRouting = {
@@ -367,22 +420,54 @@ function sortObject(obj) {
    }, {})
 }
 
+/**
+ * @param {string} str
+ */
+function toTitleCase(str) {
+   return str.toLowerCase().replace(/(^|[-_])(\w)/g, (_, a, b) => `${a}${b.toUpperCase()}`)
+}
+
+/**
+ * Add title case variants of key/values to the array
+ * @param {string[]} arr
+ */
+function addTitleCaseVariants(arr) {
+   const upperCaseArr = arr.map(elm => toTitleCase(elm))
+   return [...arr, ...upperCaseArr]
+}
+
+/**
+ * Add lowercase variants of key/values to the array
+ * @param {string[]} arr
+ */
+function addLowerCaseVariants(arr) {
+   const lowerCaseArr = arr.map(elm => elm.toLowerCase())
+   return [...arr, ...lowerCaseArr]
+}
+
 const full = sortObject({
    ...base,
    '.env': stringify(env),
-   'dockerfile': stringify(docker),
+   'Dockerfile': stringify(docker),
    'package.json': stringify(packageJSON),
    'rush.json': stringify(packageJSON),
    'pubspec.yaml': stringify(pubspecYAML),
+   'README*': stringify(readme),
+   'Readme*': stringify(readme),
    'readme*': stringify(readme),
-   'cargo.toml': stringify(cargo),
+   'Cargo.toml': stringify(cargo),
    'gemfile': stringify(gemfile),
    'go.mod': stringify(gofile),
    'composer.json': stringify(composer),
    '*.csproj': stringify(dotnetProject),
    '*.vbproj': stringify(dotnetProject),
    'mix.exs': stringify(elixir),
-   'pyproject.toml': stringify(pdm),
+   'pyproject.toml': stringify(pyprojecttoml),
+   'setup.cfg': stringify(setupcfg),
+   'setup.py': stringify(setuppy),
+   'Pipfile': stringify(pipfile),
+   'hatch.toml': stringify(hatchtoml),
+   'requirements.txt': stringify(requirementstxt),
    '*.ex': stringify(phoenixLiveView),
    '*.tex': stringify(tex),
    'deno.json*': stringify(denoRuntime),
@@ -392,19 +477,15 @@ const full = sortObject({
 
 const today = new Date().toISOString().slice(0, 16).replace('T', ' ')
 
-fs.writeFileSync('README.md',
-   fs.readFileSync('README.md', 'utf-8')
-      .replace(/```json([\s\S]*?)```/m, () => {
-         const body = JSON.stringify(full, null, 2).split('\n').map(l => `  ${l}`).join('\n')
-         return `
+fs.writeFileSync('README.md', fs.readFileSync('README.md', 'utf-8')
+   .replace(/```json([\s\S]*?)```/m, () => {
+      const body = JSON.stringify(full, null, 2).split('\n').map(l => `  ${l}`).join('\n')
+      return `
 \`\`\`jsonc
   // updated ${today}
-  // https://github.com/nyxb/vscode-nesting-config
+  // https://github.com/antfu/vscode-file-nesting-config
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.expand": false,
   "explorer.fileNesting.patterns": ${body.trimStart()},
 \`\`\``.trim()
-      })
-   ,
-   'utf-8',
-)
+   }), 'utf-8')

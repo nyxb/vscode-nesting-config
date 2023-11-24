@@ -26,7 +26,7 @@
   "contributes": {
     "commands": [
       {
-        "command": "nyxb.nesting-config.manualUpdate",
+        "command": "nyxb.nesting.manualUpdate",
         "title": "Update config now",
         "category": "Nesting Config Updater"
       }

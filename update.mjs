@@ -108,6 +108,7 @@ const workspaces = [
    '.tazerc*',
    '.yarnrc*',
    'bower.json',
+   'bun*',
    'lerna*',
    'nx.*',
    'package-lock.json',
@@ -119,7 +120,6 @@ const workspaces = [
    'workspace.json',
    'yarn*',
    'firebase.json',
-   'bun*',
 ]
 
 const docker = [

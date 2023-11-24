@@ -2,7 +2,7 @@
   "publisher": "nyxb",
   "name": "nesting-config",
   "displayName": "Nesting Config Updater",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "private": true,
   "description": "🔄 Auto updating for Nyxb's nesting config",
   "license": "MIT",

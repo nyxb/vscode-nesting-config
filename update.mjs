@@ -195,6 +195,7 @@ const libraries = [
 ]
 
 const packageJSON = [
+   'bun*',
    '.browserslist*',
    '.nodemon*',
    '.pm2*',
